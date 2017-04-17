@@ -1,20 +1,15 @@
 <template>
-  <div class="hello">
-    Contamos con los mejores profesionales
-    <div class="container">
-  
-        
-  <img src="https://www.webicina.com/uploads/topic/images/26/2445f97f4f3038de29b0dc5201281a3a.jpg" style="width:700px;height:500px;"   > 
-</div>
+  <div class="horarios">
+   Estos son los horarios
   </div>
 </template>
 
 <script>
 export default {
-  name: 'hello',
+  name: 'horarios',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Estos son los horarios'
     }
   }
 }
