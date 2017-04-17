@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    Hello
+    Consultorio Odontologico smile fresh.
   </div>
 </template>
 
