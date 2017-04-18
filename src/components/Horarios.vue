@@ -37,33 +37,39 @@
 
 
 
-      <a href="#modal1" class="btn btn-primary btn-lg" data-toggle="modal">Nuevo</a>
+            <div id='root' class="container">         
+               <modal v-if="showModal"   @close="showModal = false">         
+               <p>Insertamos cualquier texto</p>
+               </modal>               
+                  <button @click="showModal = true">Nuevo Horario</button>
+            </div>
 
 
-      <div class="modal fade" id="modal1">
-
-
-          
-
-
-
-
+            
      </div>
-
-
-
-
-
-
   </div>
+
+
+
+
+
+
 </template>
 
 <script>
+
+import modal from './Modal'
+
+
+
 export default {
-  name: 'horarios',
+  components: {
+    modal
+  },
+  
   data () {
     return {
-      msg: 'Estos son los horarios'
+      
     }
   }
 }
