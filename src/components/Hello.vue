@@ -4,7 +4,7 @@
     <div class="container">
   
         
-  <img src="https://www.webicina.com/uploads/topic/images/26/2445f97f4f3038de29b0dc5201281a3a.jpg" style="width:700px;height:500px;"   > 
+  <img src="https://www.webicina.com/uploads/topic/images/26/2445f97f4f3038de29b0dc5201281a3a.jpg" style="width:1100px;height:700px;"   > 
 </div>
   </div>
 </template>
