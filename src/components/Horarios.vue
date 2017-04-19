@@ -36,7 +36,7 @@
   </table>
 
 
-
+ 
       <button href="#modal1" class="btn btn-primary black-background white" data-toggle="modal">Nuevo</button>
 
 
@@ -99,21 +99,41 @@
             </div>
           </div>
      </div>
+=======
+            <div id='root' class="container">         
+               <modal v-if="showModal"   @close="showModal = false">         
+               <p>Insertamos cualquier texto</p>
+               </modal>               
+                  <button @click="showModal = true">Nuevo Horario</button>
+            </div>
 
 
-
-
-
-
+            
+     </div>
   </div>
+
+
+
+
+>>>>>>> origin/master
+
+
 </template>
 
 <script>
+
+import modal from './Modal'
+
+
+
 export default {
-  name: 'horarios',
+  components: {
+    modal
+  },
+  
   data () {
     return {
-      msg: 'Estos son los horarios'
+      
     }
   }
 }
