@@ -99,37 +99,26 @@
             </div>
           </div>
      </div>
-=======
-            <div id='root' class="container">         
-               <modal v-if="showModal"   @close="showModal = false">         
-               <p>Insertamos cualquier texto</p>
-               </modal>               
-                  <button @click="showModal = true">Nuevo Horario</button>
-            </div>
 
-
-            
+                    
      </div>
   </div>
 
 
 
 
->>>>>>> origin/master
+
 
 
 </template>
 
 <script>
 
-import modal from './Modal'
+
 
 
 
 export default {
-  components: {
-    modal
-  },
   
   data () {
     return {
