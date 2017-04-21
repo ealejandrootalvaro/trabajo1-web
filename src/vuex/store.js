@@ -70,6 +70,11 @@ const mutations = {
 
   TOGGLE_FAVORITE(state,email){
     email.favorite = !email.favorite;
+  },
+
+  updateName(state,name){
+
+    state.obj.name = name
   }
 
 

@@ -13,25 +13,11 @@
 
       </tr>
     </thead>
-    <tbody class="text-left">
-      <tr >
-        <td >John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-        <td>MJ / 8:00 - 12:00 AM</td>
+    <tbody class="text-left" >
+      <tr v-for="medico in listanames">
+        <td >{{medico}}</td>
       </tr>
-      <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-        <td>MJ / 2:00 - 4:00 PM</td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-        <td>LM / 8:00 - 10:00 AM</td>
-      </tr>
+     
     </tbody>
   </table>
 
@@ -58,7 +44,7 @@
                   <div class="form-group">
                     <label for="entradaNombres">Nombres</label>
                       <input type="nombres" class="form-control"
-                      id="entradaNombres" placeholder="Ingrese los Nombres"/>
+                      id="entradaNombres" placeholder="Ingrese los Nombres" v-model="nuevoName"/>
                   </div>
                   <div class="form-group">
                     <label for="entradaApellidos">Apellidos</label>
@@ -90,7 +76,7 @@
                         data-dismiss="modal">
                             Cerrar
                 </button>
-                <button type="button" class="btn btn-primary black-background white">
+                <button @click="addName" class="btn btn-primary black-background white">
                              Aceptar
                 </button>
 
@@ -120,11 +106,30 @@
 
 export default {
   
+
+  
+
   data () {
     return {
-      
+       listanames:[],
+       nuevoName:''
     }
-  }
+  },
+
+
+methods:{
+
+            addName(){
+                //alert('adding name');
+                this.listanames.push(this.nuevoName);
+                this.nuevoName='';
+            }
+
+
+
+}
+
+
 }
 </script>
 
