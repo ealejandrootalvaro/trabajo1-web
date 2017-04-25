@@ -14,15 +14,15 @@
       </tr>
     </thead>
     <tbody class="text-left" >
-      <tr v-for="medico in listanames">
-        <td >{{medico}}</td>
+      <tr v-for="medico in doctores">
+        <td >{{medico.nombre}}</td>
       </tr>
-     
+
     </tbody>
   </table>
 
 
- 
+
       <button href="#modal1" class="btn btn-primary black-background white" data-toggle="modal">Nuevo</button>
 
 
@@ -63,7 +63,14 @@
                   </div> -->
                   <!-- <button type="submit" class="btn btn-default">Aceptar</button> -->
                 </form>
-                
+
+                <div class="input-group bootstrap-timepicker timepicker">
+                    <input id="timepicker1" type="text" class="form-control input-small">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                </div>
+
+
+
 
 
               </div>
@@ -71,7 +78,7 @@
 
 
               <div class="modal-footer">
-                
+
                 <button type="button" class="btn btn-default"
                         data-dismiss="modal">
                             Cerrar
@@ -86,7 +93,7 @@
           </div>
      </div>
 
-                    
+
      </div>
   </div>
 
@@ -105,29 +112,37 @@
 
 
 export default {
-  
 
-  
+
+
 
   data () {
     return {
        listanames:[],
-       nuevoName:''
+       nuevoName:'',
+
     }
   },
 
+  computed: {
+    doctores(){
+      return this.$store.state.doctores
+    }
+  },
 
-methods:{
+  mounted(){
+    console.log("hola");
+    $('#timepicker1').timepicker();
+  },
 
-            addName(){
-                //alert('adding name');
-                this.listanames.push(this.nuevoName);
-                this.nuevoName='';
-            }
+  methods:{
+    addName(){
+      //alert('adding name');
+      this.$store.commit('ADD_DOCTOR',{nombre: this.nuevoName});
 
+    }
 
-
-}
+  }
 
 
 }

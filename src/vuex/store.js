@@ -19,8 +19,13 @@ const state = {
     {from: 'Pepito Perez', to: 'Victor',asunto: 'Prueba Vuex - Archivo',contenido:  'Hola mundo', carpeta: 'Sent', favorite: false},
 
   ],
-  activeEmail: {}
+  doctores: [
+    {nombre: "Victor", apellido: "Gutierrez", email: "victor@hotmail.com"}
+  ]
+
 }
+
+
 
 const getters = {
   inbox: state => {
@@ -41,17 +46,29 @@ const getters = {
 // define the possible mutations that can be applied to our state
 const mutations = {
 
-  ADD_EMAIL (state) {
-  const newEmail = {
-    from: '',
-    to: '',
-    asunto: '',
-    contenido: '',
-    carpeta: ''
-  }
+
+  EDIT_DOCTOR (state, nombre, doctor){
+    //Buscar el doctor con id tal
+    var index;
+    for (var i = 0; i < state.doctores.length; i++){
+      if(state.doctores[i].nombre == nombre){
+        index = i;
+        break;
+      }
+    }
+
+    state.doctores[index] = doctor;
+
+  },
+
+  ADD_DOCTOR (state,doctor){
     // only mutators can mutate the state
-    state.emails.push(newEmail)
-    state.activeEmail = newEmail
+    state.doctores.push(doctor);
+  },
+
+  ADD_EMAIL (state,doctor) {
+    // only mutators can mutate the state
+    state.doctores.push(doctor);
   },
 
   EDIT_EMAIL (state, email){
