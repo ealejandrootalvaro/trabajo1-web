@@ -65,13 +65,13 @@
                     </label>
                   </div> -->
                   <!-- <button type="submit" class="btn btn-default">Aceptar</button> -->
-                  <div class="input-group bootstrap-timepicker timepicker">
-                    <input id="timepicker1" v-model="nuevaHora"  type="text" class="form-control input-small"     >
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                </div>
+                  <div class="form-group">
+                    <input type="date" class="form-control" name="" value="" v-model="nuevaHora">
+                  </div>
+
                 </form>
 
-                
+
 
 
 
