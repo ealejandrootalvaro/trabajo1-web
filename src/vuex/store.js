@@ -20,7 +20,7 @@ const state = {
 
   ],
   doctores: [
-    {nombre: "Victor", apellido: "Gutierrez", email: "victor@hotmail.com"}
+    {nombre: "Victor", apellido: "Gutierrez", email: "victor@hotmail.com", horas:"10:30"}
   ]
 
 }

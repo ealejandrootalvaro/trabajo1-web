@@ -16,6 +16,9 @@
     <tbody class="text-left" >
       <tr v-for="medico in doctores">
         <td >{{medico.nombre}}</td>
+        <td >{{medico.apellido}}</td>
+        <td >{{medico.email}}</td>
+        <td >{{medico.horas}}</td>
       </tr>
 
     </tbody>
@@ -49,12 +52,12 @@
                   <div class="form-group">
                     <label for="entradaApellidos">Apellidos</label>
                       <input type="apellidos" class="form-control"
-                          id="entradaApellidos" placeholder="Ingrese los Apellidos"/>
+                          id="entradaApellidos" placeholder="Ingrese los Apellidos" v-model="nuevoApellido"/>
                   </div>
                   <div class="form-group">
                     <label for="entradaEmail">Email</label>
                       <input type="email" class="form-control"
-                          id="entradaEmail" placeholder="Ingrese el Email"/>
+                          id="entradaEmail" placeholder="Ingrese el Email" v-model="nuevoEmail"/>
                   </div>
                   <!-- <div class="checkbox">
                     <label>
@@ -62,12 +65,13 @@
                     </label>
                   </div> -->
                   <!-- <button type="submit" class="btn btn-default">Aceptar</button> -->
-                </form>
-
-                <div class="input-group bootstrap-timepicker timepicker">
-                    <input id="timepicker1" type="text" class="form-control input-small">
+                  <div class="input-group bootstrap-timepicker timepicker">
+                    <input id="timepicker1" v-model="nuevaHora"  type="text" class="form-control input-small"     >
                     <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                 </div>
+                </form>
+
+                
 
 
 
@@ -83,7 +87,8 @@
                         data-dismiss="modal">
                             Cerrar
                 </button>
-                <button @click="addName" class="btn btn-primary black-background white">
+                <button @click="addMedico" class="btn btn-primary black-background white">
+
                              Aceptar
                 </button>
 
@@ -120,6 +125,9 @@ export default {
     return {
        listanames:[],
        nuevoName:'',
+       nuevoApellido:'',
+       nuevoEmail:'',
+       nuevaHora:''
 
     }
   },
@@ -136,10 +144,10 @@ export default {
   },
 
   methods:{
-    addName(){
+    addMedico(){
       //alert('adding name');
-      this.$store.commit('ADD_DOCTOR',{nombre: this.nuevoName});
-
+      this.$store.commit('ADD_DOCTOR',{nombre: this.nuevoName,apellido: this.nuevoApellido,email: this.nuevoEmail,horas: this.nuevaHora});
+      $('#modal1').modal('hide');
     }
 
   }

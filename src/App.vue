@@ -23,7 +23,8 @@
             </ul>
           </li>
           <li><a href="#">Agendar Cita</a></li>
-          <li><a href="#">Nueva Consulta</a></li>
+          <!-- <a href="#">Nueva Consulta</a></li> -->
+          <router-link to="/nuevaconsulta" active-class="active" tag="li" exact><a href="#">Nueva Consulta</a></router-link>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -34,7 +35,7 @@
   </div>
     <router-view></router-view>
     <div class="margin-top: 100px; margin-bottom: 100px">
-      zsdasd
+      
     </div>
   </div>
 </template>
