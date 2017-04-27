@@ -23,7 +23,7 @@ const state = {
     {nombre: "Victor", apellido: "Gutierrez", email: "victor@hotmail.com",dia:"Lunes", horaent:"10:30",horasal:"15:30"}
   ],
   consultas:[
-    {cedula_paciente:"",fecha:"",nom_med:"",hallazgos:"",cobro:""}
+    {cedula_paciente:"123",start:"2017-04-27",nom_med:"",hallazgos:"",cobro:"", title: "Consulta paciente 123"}
   ]
 
 }

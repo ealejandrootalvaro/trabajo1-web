@@ -7,7 +7,7 @@
 <button href="#modal2" class="btn btn-primary black-background white" data-toggle="modal">7/mayo/2017</button>
 
 
-
+  <full-calendar :events="fcEvents" v-on:dayClick="onDayMethod" v-on:eventClick="onEventMethod" locale="en"></full-calendar>
 
 
       <div class="modal fade" id="modal2">
@@ -25,7 +25,7 @@
               <div class="modal-body">
                  <h5 class="text-left" >Ingrese la siguiente informacion para el  registro de una nueva cita.</h5>
 
-                 
+
                   <form role="form" id="myForm">
                   <div class="form-group">
                     <label for="cedulaUsuario">Cedula Usuario</label>
@@ -49,21 +49,21 @@
                     </thead>
                  <tbody class="text-left" >
                    <tr v-for="medico in doctores">
-                  <td >{{medico.nombre}}</td> 
+                  <td >{{medico.nombre}}</td>
                   <td >{{medico.apellido}}</td>
                   <td >{{medico.email}}</td>
                   <td >{{medico.dia}}</td>
                    <td >{{medico.horaent}}</td>
                   <td >{{medico.horasal}}</td>
-                  <td ><input type="checkbox" name="seleccionar" value="Medseleccionado"></td>              
+                  <td ><input type="checkbox" name="seleccionar" value="Medseleccionado"></td>
                 </tr>
                 </tbody>
                   </table>
                   </div>
-                  
 
 
-                 
+
+
                   <input type="reset" value="Limpiar Campos" class="btn btn-primary black-background white" >
 
 
@@ -119,26 +119,56 @@
 
 
 
- 
+
 
 </div>
 </template>
 
 <script>
+
+
+import fullCalendar from 'vue-fullcalendar'
 import Horarios from './Horarios'
 export default {
-  
+
   data () {
     return {
-     
+      nuevaCC: "",
+      fcEvents: []
     }
   },
   components: {
-    Horarios
+    Horarios,
+    fullCalendar
+  },
+
+  mounted(){
+    this.fcEvents = this.$store.state.consultas;
+  },
+
+
+
+  methods: {
+    addCita(){
+      if(this.nuevaCC != ""){
+        this.$store.commit('ADD_CONSULTA',{cedula_paciente: this.nuevaCC, start: "2017-05-07", title: "Consulta paciente "+this.nuevaCC})
+        $('#modal2').modal('hide');
+        this.nuevaCC = ""
+      }
+
+    },
+
+    onDayMethod(){
+
+    },
+
+    onEventMethod(){
+
+    }
   },
 
   computed: {
-    
+
     doctores(){
       return this.$store.state.doctores
     }
