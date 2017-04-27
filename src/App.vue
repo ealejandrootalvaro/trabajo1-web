@@ -22,7 +22,7 @@
 
             </ul>
           </li>
-          <li><a href="#">Agendar Cita</a></li>
+          <router-link to="/agendarcita" active-class="active" tag="li" exact><a href="#">Agendar Cita</a></li></router-link>
           <!-- <a href="#">Nueva Consulta</a></li> -->
           <router-link to="/nuevaconsulta" active-class="active" tag="li" exact><a href="#">Nueva Consulta</a></router-link>
         </ul>

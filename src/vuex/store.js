@@ -20,7 +20,10 @@ const state = {
 
   ],
   doctores: [
-    {nombre: "Victor", apellido: "Gutierrez", email: "victor@hotmail.com", horas:"10:30"}
+    {nombre: "Victor", apellido: "Gutierrez", email: "victor@hotmail.com",dia:"Lunes", horaent:"10:30",horasal:"15:30"}
+  ],
+  consultas:[
+    {cedula_paciente:"",fecha:"",nom_med:"",hallazgos:"",cobro:""}
   ]
 
 }
@@ -65,6 +68,14 @@ const mutations = {
     // only mutators can mutate the state
     state.doctores.push(doctor);
   },
+
+  ADD_CONSULTA(state,consulta){
+
+    state.consultas.push(consulta);
+
+  },
+
+
 
   ADD_EMAIL (state,doctor) {
     // only mutators can mutate the state

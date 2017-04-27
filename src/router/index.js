@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import Horarios from '@/components/Horarios'
 import NuevaConsulta from '@/components/NuevaConsulta'
+import AgendarCita from '@/components/AgendarCita'
 
 Vue.use(Router)
 
@@ -23,6 +24,15 @@ export default new Router({
 
       path:'/nuevaconsulta',
       component: NuevaConsulta
+
+    },
+
+    {
+        path:'/agendarcita',
+      component: AgendarCita
+
+
+
 
     }
 
