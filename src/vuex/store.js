@@ -28,6 +28,7 @@ const state = {
   citas:[
     {cedula_paciente:"123",start:"2017-04-27",nom_med:"",title: "Cita paciente 123"}
   ]
+  
 
 
 }
@@ -48,6 +49,8 @@ const getters = {
   sent: state => {
     return state.emails.filter(email => email.carpeta == 'Send')
   }
+
+
 }
 
 // define the possible mutations that can be applied to our state

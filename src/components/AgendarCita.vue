@@ -4,7 +4,7 @@
  <h1>Agenda tu cita</h1>
 <p class="text-left">Selecciona una fecha en el calendario y llena el formulario para programar una cita con el doctor que se encuentre disponible ese dia.</p>
 
-<button href="#modal2" class="btn btn-primary black-background white" data-toggle="modal">7/mayo/2017</button>
+<!-- <button href="#modal2" class="btn btn-primary black-background white" data-toggle="modal">7/mayo/2017</button> -->
 
 
   <full-calendar :events="fcEvents" v-on:dayClick="onDayMethod" v-on:eventClick="onEventMethod" locale="zh"></full-calendar>
@@ -34,6 +34,7 @@
                   </div>
                   <div class="form-group">
                     <label for="entradaApellidos">Doctores disponbles.</label>
+                    
                       <table class="table table-striped">
                       <thead>
                       <tr>
@@ -48,20 +49,19 @@
                    </tr>
                     </thead>
                  <tbody class="text-left" >
-                   <tr v-for="medico in doctores">
-
-
-
-
-
+                   <tr v-for="medico in doctores" v-if="dayf == medico.dia">
+                  
+                   <!-- <p>{{dayf}}</p> -->
                   <td >{{medico.nombre}}</td>
                   <td >{{medico.apellido}}</td>
-                  <td >{{medico.email}}</td>
-                  <td >{{medico.dia}}</td>
-                   <td >{{medico.horaent}}</td>
+                  <td >{{medico.email}}</td>        
+                  <td >{{medico.dia}}</td>                
+                  <td >{{medico.horaent}}</td>
                   <td >{{medico.horasal}}</td>
                   <td ><input type="checkbox" name="seleccionar" value="Medseleccionado"></td>
                 </tr>
+
+        
                 </tbody>
                   </table>
                   </div>
@@ -97,41 +97,12 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
 </template>
 
 <script>
 
-
+import moment from 'moment'
 import fullCalendar from 'vue-fullcalendar'
 import Horarios from './Horarios'
 export default {
@@ -139,9 +110,12 @@ export default {
   data () {
     return {
       nuevaCC: "",
-      fcEvents: []
+      fcEvents: [],
+      dayf:""
+      
     }
   },
+  
   components: {
     Horarios,
     fullCalendar
@@ -163,7 +137,59 @@ export default {
 
     },
 
-    onDayMethod(){
+    onDayMethod(day, jsEvent){
+
+
+
+      //alert('Clicked on: ' + date.day());
+      var dayz= moment(day).format('dddd');
+      if(dayz=="Monday"){
+           
+           this.dayf= dayz.replace("Monday", "Lunes");
+           //alert(this.dayf);
+      }else{
+           if(dayz=="Tuesday"){
+           
+           this.dayf= dayz.replace("Tuesday", "Martes");
+           
+      }else{
+           
+           if(dayz=="Wednesday"){
+           
+           this.dayf= dayz.replace("Wednesday", "Miercoles");
+           
+      }else{
+           
+           if(dayz=="Thursday"){
+           
+           this.dayf= dayz.replace("Thursday", "Jueves");
+           
+      }else{
+           
+           if(dayz=="Friday"){
+           
+           this.dayf= dayz.replace("Friday", "Viernes");
+           
+      }else{
+           
+           if(dayz=="Saturday"){
+           
+           this.dayf= dayz.replace("Saturday", "Sabado");
+           
+      }else{
+           
+           if(dayz=="Sunday"){
+           
+           this.dayf= dayz.replace("Sunday", "Domingo");
+           
+                             }
+                   }
+                }
+              }
+            }
+          }      
+      }
+      
       $('#modal2').modal();
      
            //alert('a day has been clicked!');
@@ -180,6 +206,10 @@ export default {
 
     doctores(){
       return this.$store.state.doctores
+    },
+    diaSeleccionado(){
+
+      return this.$store.state.diaSeleccionado
     }
   }
 }
