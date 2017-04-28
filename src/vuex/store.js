@@ -23,8 +23,12 @@ const state = {
     {nombre: "Victor", apellido: "Gutierrez", email: "victor@hotmail.com",dia:"Lunes", horaent:"10:30",horasal:"15:30"}
   ],
   consultas:[
-    {cedula_paciente:"123",start:"2017-04-27",nom_med:"",hallazgos:"",cobro:"", title: "Consulta paciente 123"}
+    {cedula_paciente:"123",nom_med:"",hallazgos:"",cobro:"", title: "Consulta paciente 123"}
+  ],
+  citas:[
+    {cedula_paciente:"123",start:"2017-04-27",nom_med:"",title: "Cita paciente 123"}
   ]
+
 
 }
 
@@ -75,6 +79,11 @@ const mutations = {
 
   },
 
+ADD_CITA(state,cita){
+
+    state.consultas.push(cita);
+
+  },
 
 
   ADD_EMAIL (state,doctor) {

@@ -7,7 +7,7 @@
 <button href="#modal2" class="btn btn-primary black-background white" data-toggle="modal">7/mayo/2017</button>
 
 
-  <full-calendar :events="fcEvents" v-on:dayClick="onDayMethod" v-on:eventClick="onEventMethod" locale="en"></full-calendar>
+  <full-calendar :events="fcEvents" v-on:dayClick="onDayMethod" v-on:eventClick="onEventMethod" locale="zh"></full-calendar>
 
 
       <div class="modal fade" id="modal2">
@@ -49,6 +49,11 @@
                     </thead>
                  <tbody class="text-left" >
                    <tr v-for="medico in doctores">
+
+
+
+
+
                   <td >{{medico.nombre}}</td>
                   <td >{{medico.apellido}}</td>
                   <td >{{medico.email}}</td>
@@ -151,7 +156,7 @@ export default {
   methods: {
     addCita(){
       if(this.nuevaCC != ""){
-        this.$store.commit('ADD_CONSULTA',{cedula_paciente: this.nuevaCC, start: "2017-05-07", title: "Consulta paciente "+this.nuevaCC})
+        this.$store.commit('ADD_CITA',{cedula_paciente: this.nuevaCC, start: "2017-05-07", title: "Cita paciente "+this.nuevaCC})
         $('#modal2').modal('hide');
         this.nuevaCC = ""
       }
@@ -159,12 +164,16 @@ export default {
     },
 
     onDayMethod(){
-
+      $('#modal2').modal();
+     
+           //alert('a day has been clicked!');
     },
 
     onEventMethod(){
 
     }
+
+    
   },
 
   computed: {
