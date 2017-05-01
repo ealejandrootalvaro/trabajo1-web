@@ -17,7 +17,7 @@
           <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Doctores<span class="caret"></span></a>
             <ul class="dropdown-menu">
 
-              <li><a href="#">Listado</a></li>
+              <router-link to="/doctores" active-class="active" tag="li" exact><a href="#">Listado</a></router-link>
               <router-link to="/horarios" active-class="active" tag="li" exact><a href="#">Horarios</a></router-link>
 
             </ul>
