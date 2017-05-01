@@ -3,13 +3,13 @@ db = new sqlite3.Database('tienda'),
 DOCTOR = {};
 
 db.serialize(function() {
-    db.run("CREATE TABLE IF NOT EXISTS doctor (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, email TEXT)");
+    db.run("CREATE TABLE IF NOT EXISTS doctor (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, apellido TEXT, direccion TEXT, telefono TEXT, ocupacion TEXT, nacimiento DATE, edad INTEGER, genero TEXT)");
 
 });
 
 DOCTOR.insertDoctor = function(doctor){
-  var stmt = db.prepare("INSERT INTO doctor VALUES (?,?,?)");
-  stmt.run(null,doctor.nombre,doctor.email);
+  var stmt = db.prepare("INSERT INTO doctor VALUES (?,?,?,?,?,?,?,?)");
+  stmt.run(null,doctor.nombre,doctor.apellido,doctor.direccion,doctor.telefono,doctor.ocupacion, doctor.nacimiento, doctor.edad, doctor.genero);
   stmt.finalize();
 }
 

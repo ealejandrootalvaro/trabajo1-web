@@ -2,6 +2,8 @@ var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('data/demodb02');
 
 var DOCTOR = require('./models/doctor')
+var HISTORIA = require('./models/historia')
+var PACIENTE = require('./models/paciente')
 
 var express = require('express');
 var restapi = express();
@@ -35,25 +37,8 @@ restapi.all('/', function(req, res, next) {
   next();
  });
 
-restapi.get('/data', function(req, res){
-    db.get("SELECT value FROM counts", function(err, row){
-        res.json({ "count" : row.value });
-    });
-});
 
-restapi.post('/data', function(req, res){
-    db.run("UPDATE counts SET value = value + 1 WHERE key = ?", "counter", function(err, row){
-        if (err){
-            console.err(err);
-            res.status(500);
-        }
-        else {
-            res.status(202);
-        }
-        res.end();
-    });
-});
-restapi.get('/data/doctor', function(req,res){
+restapi.get('/api/doctor', function(req,res){
 
   DOCTOR.getDoctores(function(error,data){
     console.log("*** Get doctores ***")
@@ -62,21 +47,31 @@ restapi.get('/data/doctor', function(req,res){
     res.json(data)
     res.end()
   });
-
-
-
-
 });
 
-restapi.post('/data/doctor', function(req,res){
+restapi.post('/api/doctor', function(req,res){
 
   console.log(req.body.nombre)
   console.log(req.body.email)
   //DOCTOR.insertDoctor({nombre: req.body.nombre, email: req.body.email})
   res.status(202);
-  DOCTOR.insertDoctor({nombre: req.body.nombre, email: req.body.email})
+  DOCTOR.insertDoctor(req.body)
   res.end()
 });
+
+restapi.get('/api/paciente', function(req,res){
+  PACIENTE.getPacientes(function(error,data){
+    res.json(data)
+    res.end()
+  })
+})
+
+restapi.post('/api/paciente', function(req,res){
+  PACIENTE.insertPaciente(req.body)
+  res.end()
+})
+
+
 
 
 restapi.listen(3888);
