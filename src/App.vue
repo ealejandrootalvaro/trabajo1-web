@@ -35,14 +35,27 @@
   </div>
     <router-view></router-view>
     <div class="margin-top: 100px; margin-bottom: 100px">
-      
+
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  mounted(){
+
+    var doctores;
+
+    this.$store.dispatch('setDoctores').then(function(response){
+      console.log("dispatch doctores success");
+      this.$store.commit('SET_DOCTORES',response.data)
+    }.bind(this))
+    .catch(function(response){
+      console.log("dispatch doctores error");
+      console.log(response)
+    })
+  }
 }
 </script>
 

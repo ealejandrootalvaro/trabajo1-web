@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 
 Vue.use(Vuex)
 
@@ -20,7 +21,7 @@ const state = {
 
   ],
   doctores: [
-    {nombre: "Victor", apellido: "Gutierrez", email: "victor@hotmail.com",dia:"Lunes", horaent:"10:30",horasal:"15:30"}
+
   ],
   consultas:[
     {cedula_paciente:"123",nom_med:"",hallazgos:"",cobro:"", title: "Consulta paciente 123"}
@@ -28,7 +29,7 @@ const state = {
   citas:[
     {cedula_paciente:"123",start:"2017-04-27",nom_med:"",title: "Cita paciente 123"}
   ]
-  
+
 
 
 }
@@ -82,6 +83,10 @@ const mutations = {
 
   },
 
+  SET_DOCTORES(state,doctores){
+    state.doctores = doctores;
+  },
+
 ADD_CITA(state,cita){
 
     state.consultas.push(cita);
@@ -121,10 +126,18 @@ ADD_CITA(state,cita){
 
 }
 
+const actions = {
+  setDoctores(context){
+      return axios.get('http://localhost:3888/data/doctor')
+  }
+}
+
+
 // create the Vuex instance by combining the state and mutations objects
 // then export the Vuex store for use by our components
 export default new Vuex.Store({
   state,
   mutations,
-  getters
+  getters,
+  actions
 })
