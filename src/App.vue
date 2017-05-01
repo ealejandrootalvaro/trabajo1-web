@@ -25,6 +25,11 @@
           <router-link to="/agendarcita" active-class="active" tag="li" exact><a href="#">Agendar Cita</a></li></router-link>
           <!-- <a href="#">Nueva Consulta</a></li> -->
           <router-link to="/nuevaconsulta" active-class="active" tag="li" exact><a href="#">Nueva Consulta</a></router-link>
+
+          <router-link to="/ListadoPacientes" active-class="active" tag="li" exact><a href="#">Listado Pacientes</a></router-link>
+
+           <router-link to="/Citas" active-class="active" tag="li" exact><a href="#">Citas</a></router-link>
+        
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>

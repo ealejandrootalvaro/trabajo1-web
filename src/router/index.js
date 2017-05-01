@@ -4,7 +4,8 @@ import Hello from '@/components/Hello'
 import Horarios from '@/components/Horarios'
 import NuevaConsulta from '@/components/NuevaConsulta'
 import AgendarCita from '@/components/AgendarCita'
-
+import ListadoPacientes from '@/components/ListadoPacientes'
+import Citas from '@/components/Citas'
 Vue.use(Router)
 
 export default new Router({
@@ -30,6 +31,22 @@ export default new Router({
     {
         path:'/agendarcita',
       component: AgendarCita
+
+
+
+
+    },
+
+    {
+
+      path:'/ListadoPacientes',
+      component: ListadoPacientes
+
+    },
+
+    {
+        path:'/Citas',
+      component: Citas
 
 
 
