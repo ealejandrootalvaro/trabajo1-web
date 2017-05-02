@@ -1,108 +1,108 @@
 <template>
   <div class="container">
-   <h1>Nuestros Doctores.</h1>
-<p class="text-left">En la siguiente tabla se encuentran registrados los doctores actualmente registrados en la nomina de SmileFresh.</p>
+    <h1>Nuestros Doctores.</h1>
+    <p class="text-left">En la siguiente tabla se encuentran registrados los doctores actualmente registrados en la nomina de SmileFresh.</p>
 
- <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Email</th>  
-        <th>Eliminar</th>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Email</th>
+          <th>Eliminar</th>
 
-      </tr>
-    </thead>
-    <tbody class="text-left" >
-      <tr v-for="medico in doctores">
-        <td >{{medico.nombre}}</td>
-        <td >{{medico.apellido}}</td>
-        <td >{{medico.email}}</td>
-        
-        <td ><input type="checkbox" name="eliminar" value="eliminar"></td>
-      </tr>
+        </tr>
+      </thead>
+      <tbody class="text-left" >
+        <tr v-for="medico in doctores">
+          <td >{{medico.nombre}}</td>
+          <td >{{medico.apellido}}</td>
+          <td >{{medico.email}}</td>
 
-    </tbody>
-  </table>
+          <td ><input type="checkbox" name="eliminar" value="eliminar"></td>
+        </tr>
 
-
-
-      <button href="#modal1" class="btn btn-primary black-background white" data-toggle="modal">Nuevo Doctor</button>
-
-<button  @click="eliminar" class="btn btn-primary black-background white" >Eliminar los doctores seleccionados</button>
+      </tbody>
+    </table>
 
 
-      <div class="modal fade" id="modal1">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                       <span aria-hidden="true">&times;</span>
-                       <span class="sr-only">Close</span>
-                </button>
-                <h4 class="modal-title">Ingresar Nuevo Doctor</h4>
 
-              </div>
+    <button href="#modal1" class="btn btn-primary black-background white" data-toggle="modal">Nuevo Doctor</button>
 
-              <div class="modal-body">
-                 <h5 class="text-left" >Ingrese la siguiente informacion referente al registro de un nuevo doctor.</h5>
-
-                 
-                  <form role="form" id="myForm">
-                  <div class="form-group">
-                    <label for="entradaNombres">Nombres</label>
-                      <input type="nombres" class="form-control"
-                      id="entradaNombres" placeholder="Ingrese los Nombres" v-model="nuevoName"/>
-                  </div>
-                  <div class="form-group">
-                    <label for="entradaApellidos">Apellidos</label>
-                      <input type="apellidos" class="form-control"
-                          id="entradaApellidos" placeholder="Ingrese los Apellidos" v-model="nuevoApellido"/>
-                  </div>
-                  <div class="form-group">
-                    <label for="entradaEmail">Email</label>
-                      <input type="email" class="form-control"
-                          id="entradaEmail" placeholder="Ingrese el Email" v-model="nuevoEmail"/>
-                  </div>
-                  
-  
-                  <input type="reset" value="Limpiar Campos" class="btn btn-primary black-background white" >
+    <button  @click="eliminar" class="btn btn-primary black-background white" >Eliminar los doctores seleccionados</button>
 
 
-                </form>
+    <div class="modal fade" id="modal1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+              <span class="sr-only">Close</span>
+            </button>
+            <h4 class="modal-title">Ingresar Nuevo Doctor</h4>
 
-              </div>
-              <div class="modal-footer">
-
-                <button type="button" class="btn btn-primary black-background white"
-                        data-dismiss="modal">
-                            Cerrar
-                </button>
-                <button @click="addMedico" class="btn btn-primary black-background white">
-
-                             Aceptar
-                </button>
-
-
-              </div>
-            </div>
           </div>
-     </div>
+
+          <div class="modal-body">
+            <h5 class="text-left" >Ingrese la siguiente informacion referente al registro de un nuevo doctor.</h5>
 
 
-     </div>
+            <form role="form" id="myForm">
+              <div class="form-group">
+                <label for="entradaNombres">Nombres</label>
+                <input type="nombres" class="form-control"
+                id="entradaNombres" placeholder="Ingrese los Nombres" v-model="nuevoName"/>
+              </div>
+              <div class="form-group">
+                <label for="entradaApellidos">Apellidos</label>
+                <input type="apellidos" class="form-control"
+                id="entradaApellidos" placeholder="Ingrese los Apellidos" v-model="nuevoApellido"/>
+              </div>
+              <div class="form-group">
+                <label for="entradaEmail">Email</label>
+                <input type="email" class="form-control"
+                id="entradaEmail" placeholder="Ingrese el Email" v-model="nuevoEmail"/>
+              </div>
+
+
+              <input type="reset" value="Limpiar Campos" class="btn btn-primary black-background white" >
+
+
+            </form>
+
+          </div>
+          <div class="modal-footer">
+
+            <button type="button" class="btn btn-primary black-background white"
+            data-dismiss="modal">
+            Cerrar
+          </button>
+          <button @click="addMedico" class="btn btn-primary black-background white">
+
+            Aceptar
+          </button>
+
+
+        </div>
+      </div>
+    </div>
   </div>
+
+
+</div>
+</div>
 </template>
 
 <script>
 export default {
   data () {
     return {
-       listanames:[],
-       nuevoName:'',
-       nuevoApellido:'',
-       nuevoEmail:'',
-       
+      listanames:[],
+      nuevoName:'',
+      nuevoApellido:'',
+      nuevoEmail:'',
+
 
     }
   },
@@ -113,25 +113,20 @@ export default {
     }
   },
 
-  
+
 
   methods:{
     addMedico(){
       //alert('adding name');
       this.$store.commit('ADD_DOCTOR',{nombre: this.nuevoName,apellido: this.nuevoApellido,email: this.nuevoEmail});
       $('#modal1').modal('hide');
-      
+
     },
 
     eliminar() {
-        var aObj=document.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-        var i=aObj.length; 
-      while(i--)   { 
-          if(aObj[i].getElementsByTagName('input')[0].checked) {
-               aObj[i].parentNode.removeChild(aObj[i]);
-                                                               }
-                   }          
-               }
+      this.$store.dispatch('DELETE_DOCTOR')
+    }
+
   }
 
 

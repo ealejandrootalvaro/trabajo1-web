@@ -23,4 +23,8 @@ DOCTOR.getDoctores = function(callback){
   })
 }
 
+DOCTOR.deleteDoctor = function(id){
+  db.run("DELETE FROM doctor WHERE id = ?",[id])
+}
+
 module.exports = DOCTOR;

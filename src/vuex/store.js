@@ -43,6 +43,20 @@ const mutations = {
     state.doctores.push(doctor);
   },
 
+  DELETE_DOCTOR (state,doctor){
+    var index =0;
+    for (var i = 0; i < state.doctores.length; i++) {
+      if(state.doctores[i].id == id){
+        index = i;
+        break;
+      }
+    }
+
+    if(index != 0){
+      state.doctores.splice(index,1)
+    }
+  },
+
   ADD_CONSULTA(state,consulta){
     state.consultas.push(consulta);
   },
@@ -75,6 +89,20 @@ const mutations = {
 
   ADD_HORARIO(state,horario){
     state.horarios.push(horario)
+  },
+
+  DELETE_HORARIO(state,id){
+    var index =0;
+    for (var i = 0; i < state.horarios.length; i++) {
+      if(state.horarios[i].id == id){
+        index = i;
+        break;
+      }
+    }
+
+    if(index != 0){
+      state.horarios.splice(index,1)
+    }
   }
 
 }
@@ -94,6 +122,14 @@ const actions = {
       console.log(response.data)
       commit('SET_DOCTORES',response.data)
     }, (err) => {
+      console.log(err)
+    })
+  },
+
+  DELETE_DOCTOR: function({commit},id){
+    axios.delete('http://localhost:3888/api/doctor',id).then((response)=>{
+      commit('DELETE_DOCTOR',id)
+    }, (err)=>{
       console.log(err)
     })
   },
@@ -135,6 +171,16 @@ const actions = {
   ADD_HORARIO: function({commit},horario){
     axios.post('http://localhost:3888/api/horario',horario).then((response)=>{
       commit('ADD_HORARIO',horario)
+    }, (err) => {
+      console.log(err)
+    })
+  },
+
+  DELETE_HORARIO: function({commit},id){
+    axios.delete('http://localhost:3888/api/horario/'+id).then((response)=>{
+      commit('DELETE_HORARIO',id)
+    }, (err) => {
+      console.log(err)
     })
   }
 

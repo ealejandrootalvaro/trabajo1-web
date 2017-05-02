@@ -42,4 +42,8 @@ HORARIO.getHorarios = function(callback){
   })
 }
 
+HORARIO.deleteHorario = function(id){
+  db.run("DELETE FROM horario WHERE id = ?",[id])
+}
+
 module.exports = HORARIO;

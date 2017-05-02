@@ -66,6 +66,10 @@ restapi.post('/api/doctor', function(req,res){
 });
 
 
+restapi.delete('/api/doctor/:id', function(req,res){
+  DOCTOR.deleteDoctor(req.params.id)
+})
+
 
 // ****** API PACIENTES ****** //
 
@@ -175,6 +179,10 @@ restapi.get('/api/horario/:id',function(req,res){
 
 restapi.post('/api/horario',function(req,res){
   HORARIO.insertHorario(req.body)
+})
+
+restapi.delete('/api/horario/:id',function(req,res){
+  HORARIO.deleteHorario(req.params.id)
 })
 
 
