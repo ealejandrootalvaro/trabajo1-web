@@ -41,3 +41,5 @@ CITA.getCitas = function(callback){
     }
   })
 }
+
+module.exports = CITA;

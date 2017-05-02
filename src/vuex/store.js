@@ -13,7 +13,8 @@ const state = {
   citas:[
     {cedula_paciente:"123",start:"2017-04-27",nom_med:"",title: "Cita paciente 123"}
   ],
-  historias: []
+  historias: [],
+  horarios: []
 }
 
 const getters = {
@@ -64,6 +65,16 @@ const mutations = {
 
   SET_HISTORIAS(state,historias){
     state.historias = historias;
+  },
+
+  /* OPERACIONES HORARIO */
+
+  SET_HORARIOS(state,horarios){
+    state.horarios = horarios
+  },
+
+  ADD_HORARIO(state,horario){
+    state.horarios.push(horario)
   }
 
 }
@@ -87,6 +98,8 @@ const actions = {
     })
   },
 
+
+
   LOAD_PACIENTES: function({commit}){
     axios.get('http://localhost:3888/api/paciente').then((response)=>{
       commit('SET_PACIENTES',response.data)
@@ -108,6 +121,20 @@ const actions = {
       commit('SET_HISTORIAS',response.data)
     }, (err) => {
       console.log(err)
+    })
+  },
+
+  LOAD_HORARIOS: function({commit}){
+    axios.get('http://localhost:3888/api/horario').then((response)=>{
+      commit('SET_HORARIOS',response.data)
+    }, (err) => {
+      console.log(err)
+    })
+  },
+
+  ADD_HORARIO: function({commit},horario){
+    axios.post('http://localhost:3888/api/horario',horario).then((response)=>{
+      commit('ADD_HORARIO',horario)
     })
   }
 

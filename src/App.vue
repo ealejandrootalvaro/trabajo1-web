@@ -51,6 +51,7 @@ export default {
   mounted(){
 
     this.$store.dispatch('LOAD_DOCTORES');
+    this.$store.dispatch('LOAD_HORARIOS');
 
   }
 }

@@ -19,13 +19,13 @@
           </tr>
         </thead>
         <tbody class="text-left" >
-          <tr v-for="medico in doctores">
+          <tr v-for="medico in horarios">
             <td >{{medico.nombre}}</td>
             <td >{{medico.apellido}}</td>
             <td >{{medico.email}}</td>
             <td >{{medico.dia}}</td>
-            <td >{{medico.horaent}}</td>
-            <td >{{medico.horasal}}</td>
+            <td >{{medico.inicio}}</td>
+            <td >{{medico.fin}}</td>
             <td ><input type="checkbox" name="eliminar" value="eliminar"></td>
           </tr>
 
@@ -57,35 +57,25 @@
 
               <form role="form" id="myForm">
                 <div class="form-group">
-                  <label for="entradaNombres">Nombres</label>
-                  <input type="nombres" class="form-control"
-                  id="entradaNombres" placeholder="Ingrese los Nombres" v-model="nuevoName"/>
-                </div>
-                <div class="form-group">
-                  <label for="entradaApellidos">Apellidos</label>
-                  <input type="apellidos" class="form-control"
-                  id="entradaApellidos" placeholder="Ingrese los Apellidos" v-model="nuevoApellido"/>
-                </div>
-                <div class="form-group">
-                  <label for="entradaEmail">Email</label>
-                  <input type="email" class="form-control"
-                  id="entradaEmail" placeholder="Ingrese el Email" v-model="nuevoEmail"/>
+                  <select class="form-control" name="" v-model="doctor">
+                    <option v-bind:value="item.id" v-for="item in doctores">{{item.nombre + item.apellido}}</option>
+                  </select>
                 </div>
 
 
 
                 <div class="form-group">
                   <label for="dia">Dia de la Semana</label>
-                  <input list="dia" placeholder="Ingrese el dia de la semana." class="form-control" name="" value="" v-model="dia">
-                  <datalist id="dia">
-                    <option value="Lunes"/>
-                    <option value="Martes"/>
-                    <option value="Miercoles"/>
-                    <option value="Jueves"/>
-                    <option value="Viernes"/>
-                    <option value="Sabado"/>
-                    <option value="Domingo"/>
-                  </datalist>
+
+                  <select class="form-control" v-model="dia">
+                    <option value="Lunes">Lunes</option>
+                    <option value="Martes">Martes</option>
+                    <option value="Miercoles">Miercoles</option>
+                    <option value="Jueves">Jueves</option>
+                    <option value="Viernes">Viernes</option>
+                    <option value="Sabado">Sabado</option>
+                    <option value="Domingo">Domingo</option>
+                  </select>
                 </div>
 
                 <div class="form-group">
@@ -151,6 +141,7 @@ export default {
 
   data () {
     return {
+      doctor: 0,
       listanames:[],
       nuevoName:'',
       nuevoApellido:'',
@@ -163,6 +154,11 @@ export default {
   },
 
   computed: {
+    horarios(){
+      console.log(this.$store.state.horarios)
+      return this.$store.state.horarios
+    },
+
     doctores(){
       return this.$store.state.doctores
     }
@@ -176,7 +172,7 @@ export default {
   methods:{
     addMedico(){
       //alert('adding name');
-      this.$store.dispatch('ADD_DOCTOR',{nombre: this.nuevoName,apellido: this.nuevoApellido,email: this.nuevoEmail, dia: this.dia,horaent: this.nuevaHoraE,horasal: this.nuevaHoraS});
+      this.$store.dispatch('ADD_HORARIO',{doctor: this.doctor, dia: this.dia,inicio: this.nuevaHoraE,fin: this.nuevaHoraS});
       $('#modal1').modal('hide');
 
     },

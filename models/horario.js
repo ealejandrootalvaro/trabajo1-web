@@ -7,7 +7,7 @@ db.serialize(function() {
 });
 
 HORARIO.insertHorario = function(horario){
-  var stmt = db.prerate("INSERT INTO HORARIO VALUES (?,?,?,?,?)");
+  var stmt = db.prepare("INSERT INTO HORARIO VALUES (?,?,?,?,?)");
   stmt.run(null,horario.doctor,horario.dia,horario.inicio,horario.fin)
   stmt.finalize();
 }
@@ -33,7 +33,7 @@ HORARIO.getHorario = function(callback,id){
 }
 
 HORARIO.getHorarios = function(callback){
-  db.get("SELECT * FROM horario INNER JOIN doctor ON horario.doctor = doctor.id",function(err,rows){
+  db.all("SELECT * FROM horario INNER JOIN doctor ON horario.doctor = doctor.id",function(err,rows){
     if(err){
       throw err;
     }else{
@@ -41,3 +41,5 @@ HORARIO.getHorarios = function(callback){
     }
   })
 }
+
+module.exports = HORARIO;
