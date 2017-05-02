@@ -18,8 +18,7 @@
           <td >{{medico.nombre}}</td>
           <td >{{medico.apellido}}</td>
           <td >{{medico.email}}</td>
-
-          <td ><input type="checkbox" name="eliminar" value="eliminar"></td>
+          <td ><input v-on:click="clickMedico(medico.id)" type="checkbox" name="eliminar" value="eliminar"></td>
         </tr>
 
       </tbody>
@@ -98,7 +97,7 @@
 export default {
   data () {
     return {
-      listanames:[],
+      listaDoctores:[],
       nuevoName:'',
       nuevoApellido:'',
       nuevoEmail:'',
@@ -124,8 +123,34 @@ export default {
     },
 
     eliminar() {
-      this.$store.dispatch('DELETE_DOCTOR')
+
+      for (var i = 0; i < this.listaDoctores.length; i++) {
+
+        this.$store.dispatch('DELETE_DOCTOR',this.listaDoctores[i])
+
+      }
+
+
+    },
+
+    clickMedico(id){
+
+      var index = -1;
+
+      for (var i = 0; i < this.listaDoctores.length; i++) {
+        if(this.listaDoctores[i] == id){
+          index = i;
+          break;
+        }
+      }
+
+      if(index == -1){
+        this.listaDoctores.push(id)
+      }else{
+        this.splice(index,1)
+      }
     }
+
 
   }
 

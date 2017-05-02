@@ -127,7 +127,7 @@ const actions = {
   },
 
   DELETE_DOCTOR: function({commit},id){
-    axios.delete('http://localhost:3888/api/doctor',id).then((response)=>{
+    axios.delete('http://localhost:3888/api/doctor/'+id).then((response)=>{
       commit('DELETE_DOCTOR',id)
     }, (err)=>{
       console.log(err)
