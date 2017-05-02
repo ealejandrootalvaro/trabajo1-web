@@ -4,6 +4,8 @@ var db = new sqlite3.Database('data/demodb02');
 var DOCTOR = require('./models/doctor')
 var HISTORIA = require('./models/historia')
 var PACIENTE = require('./models/paciente')
+var CITA = require('./models/cita')
+var HORARIO = require('./models/horario')
 
 var express = require('express');
 var restapi = express();
@@ -145,6 +147,34 @@ restapi.get('/api/cita/paciente/:id', function(req,res){
 /* Insertar una nueva cita */
 restapi.post('/api/cita', function(req,res){
   CITA.insertCita(req.body)
+})
+
+
+// ***** API HORARIOS ***** //
+
+restapi.get('/api/horario',function(req,res){
+  HORARIO.getHorarios(function(error,data){
+    res.json(data)
+    res.end()
+  })
+})
+
+restapi.get('/api/horario/doctor/:id',function(req,res){
+  HORARIO.getHorariosDoctor(function(error,data){
+    res.json(data)
+    res.end()
+  },req.params.id)
+})
+
+restapi.get('/api/horario/:id',function(req,res){
+  HORARIO.getHorario(function(error,data){
+    res.json(data)
+    res.end()
+  },req.params.id)
+})
+
+restapi.post('/api/horario',function(req,res){
+  HORARIO.insertHorario(req.body)
 })
 
 
