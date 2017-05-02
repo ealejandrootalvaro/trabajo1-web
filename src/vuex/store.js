@@ -70,6 +70,14 @@ const mutations = {
 
 const actions = {
 
+  ADD_DOCTOR: function({commit},doctor){
+    axios.post('http://localhost:3888/api/doctor',doctor).then((response)=>{
+      commit('ADD_DOCTOR',doctor)
+    }, (err)=>{
+      console.log(err)
+    })
+  },
+
   LOAD_DOCTORES: function({commit}){
     axios.get('http://localhost:3888/api/doctor').then((response)=>{
       console.log(response.data)
