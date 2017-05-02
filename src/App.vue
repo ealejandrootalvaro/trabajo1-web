@@ -50,16 +50,8 @@ export default {
   name: 'app',
   mounted(){
 
-    var doctores;
+    this.$store.dispatch('LOAD_DOCTORES');
 
-    this.$store.dispatch('setDoctores').then(function(response){
-      console.log("dispatch doctores success");
-      this.$store.commit('SET_DOCTORES',response.data)
-    }.bind(this))
-    .catch(function(response){
-      console.log("dispatch doctores error");
-      console.log(response)
-    })
   }
 }
 </script>

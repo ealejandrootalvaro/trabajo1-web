@@ -38,17 +38,21 @@ restapi.all('/', function(req, res, next) {
  });
 
 
+
+
+// ***** API DOCTORES ****** //
+
+/* Obtener todos los doctores */
 restapi.get('/api/doctor', function(req,res){
 
   DOCTOR.getDoctores(function(error,data){
-    console.log("*** Get doctores ***")
-    console.log("error "+error)
-    console.log("data "+data)
     res.json(data)
     res.end()
   });
 });
 
+
+/* Insertar un nuevo doctor */
 restapi.post('/api/doctor', function(req,res){
 
   console.log(req.body.nombre)
@@ -59,6 +63,11 @@ restapi.post('/api/doctor', function(req,res){
   res.end()
 });
 
+
+
+// ****** API PACIENTES ****** //
+
+/* Obtener todos los pacientes */
 restapi.get('/api/paciente', function(req,res){
   PACIENTE.getPacientes(function(error,data){
     res.json(data)
@@ -66,10 +75,79 @@ restapi.get('/api/paciente', function(req,res){
   })
 })
 
+
+/* Insertar pacientes */
 restapi.post('/api/paciente', function(req,res){
   PACIENTE.insertPaciente(req.body)
   res.end()
 })
+
+/* Obtener informacion del paciente con el id */
+restapi.get('api/paciente/:id', function(req,res){
+  PACIENTE.getPaciente(function(error,data){
+    res.json(data)
+    res.end()
+  },req.params.id)
+})
+
+
+// ***** API HISTORIA MEDICA ****** //
+
+/* Obtener todas las historias  */
+restapi.get('/api/historia', function(req,res){
+  HISTORIA.getHistorias(function(error,data){
+    res.json(data)
+    res.end()
+  })
+})
+
+/* Obtener historias de un paciente */
+restapi.get('/api/historia/paciente/:id',function(req,res){
+  HISTORIA.getHistoriasPaciente(function(error,data){
+    res.json(data)
+    res.end()
+  },req.params.id)
+})
+
+/* Insertar nueva historia  */
+restapi.post('/api/historia',function(req,res){
+  HISTORIA.insertHistoria(req.body)
+  res.end()
+})
+
+/* Obtener historia con el id */
+restapi.get('/api/historia/:id',function(req,res){
+  HISTORIA.getHistoria(function(error,data){
+    res.json(data)
+    res.end()
+  },req.params.id)
+})
+
+
+// ****** API CITAS ****** //
+
+/* Obtener todas las citas */
+restapi.get('/api/cita',function(req,res){
+  CITA.getCitas(function(error,data){
+    res.json(data)
+    res.end()
+  })
+})
+
+/* Obtener las citas de un paciente */
+restapi.get('/api/cita/paciente/:id', function(req,res){
+  CITA.getCitasPaciente(function(error,data){
+    res.json(data)
+    res.end()
+  },req.params.id)
+})
+
+/* Insertar una nueva cita */
+restapi.post('/api/cita', function(req,res){
+  CITA.insertCita(req.body)
+})
+
+
 
 
 

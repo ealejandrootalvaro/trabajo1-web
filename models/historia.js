@@ -9,12 +9,22 @@ db.serialize(function() {
 
 HISTORIA.insertHistoria = function(historia){
   var stmt = db.prepare("INSERT INTO HISTORIA VALUES (?,?,?,?,?)");
-  stmt.run(null,historia.date,historia.doctor,historia.descripcion, historia.diagnostico);
+  stmt.run(null,historia.date,historia.doctor,historia.paciente,historia.descripcion, historia.diagnostico);
   stmt.finalize();
 }
 
 HISTORIA.getHistoriasPaciente = function(callback,paciente){
   db.all("SELECT * FROM HISTORIA WHERE paciente = ?",[paciente], function(err,rows){
+    if(err){
+      throw err;
+    }else{
+      callback(null,rows)
+    }
+  })
+}
+
+HISTORIA.getHistorias = function(){
+  db.all("SELECT * FROM HISTORIA",function(err,rows){
     if(err){
       throw err;
     }else{

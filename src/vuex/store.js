@@ -12,7 +12,8 @@ const state = {
   ],
   citas:[
     {cedula_paciente:"123",start:"2017-04-27",nom_med:"",title: "Cita paciente 123"}
-  ]
+  ],
+  historias: []
 }
 
 const getters = {
@@ -22,7 +23,7 @@ const getters = {
 // define the possible mutations that can be applied to our state
 const mutations = {
 
-
+  /* OPERACIONES DOCTORES */
   EDIT_DOCTOR (state, nombre, doctor){
     //Buscar el doctor con id tal
     var index;
@@ -32,7 +33,6 @@ const mutations = {
         break;
       }
     }
-
     state.doctores[index] = doctor;
 
   },
@@ -43,51 +43,66 @@ const mutations = {
   },
 
   ADD_CONSULTA(state,consulta){
-
     state.consultas.push(consulta);
-
-  },
-
-  SET_DOCTORES(state,doctores){
-    state.doctores = doctores;
   },
 
   ADD_CITA(state,cita){
     state.consultas.push(cita);
   },
 
-  ADD_EMAIL (state,doctor) {
-    // only mutators can mutate the state
-    state.doctores.push(doctor);
+  SET_DOCTORES(state,doctores){
+    state.doctores = doctores
   },
 
-  EDIT_EMAIL (state, email){
-    state.activeEmail = email
+  /* OPERACIONES CITAS */
+
+  SET_CITAS(state,citas){
+    state.citas = citas
   },
 
-  SET_ACTIVE_EMAIL (state, email){
-    state.activeEmail = email
-  },
+  /* OPERACIONES HISTORIA */
 
-  REMOVE_EMAIL(state,email){
-    var index = state.emails.indexOf(email);
-    state.emails.splice(index,1);
-  },
-
-  TOGGLE_FAVORITE(state,email){
-    email.favorite = !email.favorite;
-  },
-
-  updateName(state,name){
-    state.obj.name = name
+  SET_HISTORIAS(state,historias){
+    state.historias = historias;
   }
 
 }
 
 const actions = {
-  setDoctores(context){
-      return axios.get('http://localhost:3888/data/doctor')
+
+  LOAD_DOCTORES: function({commit}){
+    axios.get('http://localhost:3888/api/doctor').then((response)=>{
+      console.log(response.data)
+      commit('SET_DOCTORES',response.data)
+    }, (err) => {
+      console.log(err)
+    })
+  },
+
+  LOAD_PACIENTES: function({commit}){
+    axios.get('http://localhost:3888/api/paciente').then((response)=>{
+      commit('SET_PACIENTES',response.data)
+    }, (err) => {
+      console.log(err)
+    })
+  },
+
+  LOAD_CITAS: function({commit}){
+    axios.get('http://localhost:3888/api/cita').then((response)=>{
+      commit('SET_CITAS',response.data)
+    }, (err) => {
+      console.log(err)
+    })
+  },
+
+  LOAD_HISTORIAS: function({commit}){
+    axios.get('http://localhost:3888/api/historia').then((response)=>{
+      commit('SET_HISTORIAS',response.data)
+    }, (err) => {
+      console.log(err)
+    })
   }
+
 }
 
 

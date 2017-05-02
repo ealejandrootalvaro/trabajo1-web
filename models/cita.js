@@ -23,11 +23,21 @@ CITA.getCitasPaciente = function(callback,paciente){
 }
 
 CITA.getCita = function(callback,id){
-  db.get("SELECT * FROM HISTORIA WHERE id = ? ",[id],function(err,row){
+  db.get("SELECT * FROM CITA WHERE id = ? ",[id],function(err,row){
     if(err){
       throw err;
     }else{
       callback(null,row)
+    }
+  })
+}
+
+CITA.getCitas = function(callback){
+  db.get("SELECT * FROM CITA",function(err,rows){
+    if(err){
+      throw err;
+    }else{
+      callback(null,rows)
     }
   })
 }

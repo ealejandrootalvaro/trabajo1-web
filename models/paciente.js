@@ -23,4 +23,14 @@ PACIENTE.getPacientes = function(callback){
   })
 }
 
+PACIENTE.getPaciente = function(callback,id){
+  db.get("SELECT * FROM PACIENTE WHERE id = ?",[id], function(err,rows){
+    if(err){
+      throw err;
+    }else{
+      callback(null,row)
+    }
+  })
+}
+
 module.exports = PACIENTE;
