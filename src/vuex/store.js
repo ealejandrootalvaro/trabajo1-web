@@ -44,7 +44,9 @@ const mutations = {
   },
 
   DELETE_DOCTOR (state,doctor){
-    var index =0;
+    console.log("antes")
+    console.log(state.doctores)
+    var index =-1;
     for (var i = 0; i < state.doctores.length; i++) {
       if(state.doctores[i].id == id){
         index = i;
@@ -52,9 +54,12 @@ const mutations = {
       }
     }
 
-    if(index != 0){
+    if(index != -1){
       state.doctores.splice(index,1)
     }
+
+    console.log("despues")
+    console.log(state.doctores)
   },
 
   ADD_CONSULTA(state,consulta){
@@ -127,7 +132,9 @@ const actions = {
   },
 
   DELETE_DOCTOR: function({commit},id){
+    console.log("antes axios")
     axios.delete('http://localhost:3888/api/doctor/'+id).then((response)=>{
+      console.log("voy a llamar el commit")
       commit('DELETE_DOCTOR',id)
     }, (err)=>{
       console.log(err)

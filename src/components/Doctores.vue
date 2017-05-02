@@ -27,10 +27,10 @@
           <td >{{medico.direccion}}</td>
           <td >{{medico.telefono}}</td>
           <td >{{medico.ocupacion}}</td>
-          <td >{{medico.fechadenacimiento}}</td>
+          <td >{{medico.nacimiento}}</td>
           <td >{{medico.edad}}</td>
           <td >{{medico.genero}}</td>
-         
+
           <td ><input v-on:click="clickMedico(medico.id)" type="checkbox" name="eliminar" value="eliminar"></td>
         </tr>
 
@@ -185,7 +185,12 @@ export default {
       nuevoName:'',
       nuevoApellido:'',
       nuevoEmail:'',
-
+      nuevaDireccion:'',
+      nuevoTelefono:'',
+      nuevaOcupacion:'',
+      nuevaFechaNaci:'',
+      nuevaEdad: '',
+      nuevoGenero: ''
 
     }
   },
@@ -201,8 +206,8 @@ export default {
   methods:{
     addMedico(){
       //alert('adding name');
-      this.$store.commit('ADD_DOCTOR',{nombre: this.nuevoName,apellido: this.nuevoApellido,email: this.nuevoEmail,direccion: this.nuevaDireccion ,telefono: this.nuevoTelefono,ocupacion: this.nuevaOcupacion, fechadenacimiento: this.nuevaFechaNaci, edad: this.nuevaEdad, genero: this.nuevoGenero});
-      
+      this.$store.dispatch('ADD_DOCTOR',{nombre: this.nuevoName,apellido: this.nuevoApellido,email: this.nuevoEmail,direccion: this.nuevaDireccion ,telefono: this.nuevoTelefono,ocupacion: this.nuevaOcupacion, nacimiento: this.nuevaFechaNaci, edad: this.nuevaEdad, genero: this.nuevoGenero});
+
 
       $('#modal1').modal('hide');
 
