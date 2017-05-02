@@ -9,6 +9,12 @@
           <th>Nombre</th>
           <th>Apellido</th>
           <th>Email</th>
+          <th>Direccion</th>
+          <th>Telefono</th>
+          <th>Ocupacion</th>
+          <th>Fecha De Nacimiento</th>
+          <th>Edad</th>
+          <th>Genero</th>
           <th>Eliminar</th>
 
         </tr>
@@ -18,6 +24,13 @@
           <td >{{medico.nombre}}</td>
           <td >{{medico.apellido}}</td>
           <td >{{medico.email}}</td>
+          <td >{{medico.direccion}}</td>
+          <td >{{medico.telefono}}</td>
+          <td >{{medico.ocupacion}}</td>
+          <td >{{medico.fechadenacimiento}}</td>
+          <td >{{medico.edad}}</td>
+          <td >{{medico.genero}}</td>
+         
           <td ><input v-on:click="clickMedico(medico.id)" type="checkbox" name="eliminar" value="eliminar"></td>
         </tr>
 
@@ -63,6 +76,77 @@
                 <input type="email" class="form-control"
                 id="entradaEmail" placeholder="Ingrese el Email" v-model="nuevoEmail"/>
               </div>
+
+
+
+
+              <div class="form-group">
+                <label for="entradaNombres">Direccion</label>
+                <input type="direccion" class="form-control"
+                id="entradaDireccion" placeholder="Ingrese la direccion de contacto" v-model="nuevaDireccion"/>
+              </div>
+
+              <div class="form-group">
+                <label for="entradaTelefono">Telefono</label>
+                <input type="telefono" class="form-control"
+                id="entradaTelefono" placeholder="Ingrese el telefono" v-model="nuevoTelefono"/>
+              </div>
+
+              <div class="form-group">
+                <label for="entradaOcupacion">Ocupacion</label>
+                <input type="ocupacion" class="form-control"
+                id="entradaOcupacion" placeholder="Ingrese la ocupacion " v-model="nuevaOcupacion"/>
+              </div>
+
+              <div class="form-group">
+                <label for="entradaFechNacimi">Fecha de Nacimiento</label>
+                <input type="fechadenacimiento" class="form-control"
+                id="entradaFechNacimi" placeholder="Ingrese la fecha de nacimiento" v-model="nuevaFechaNaci"/>
+              </div>
+
+              <div class="form-group">
+                <label for="entradaEdad">Edad</label>
+                <input type="edad" class="form-control"
+                id="entradaEdad" placeholder="Ingrese la edad" v-model="nuevaEdad"/>
+              </div>
+
+              <div class="form-group">
+                <label for="entradaGenero">Genero</label>
+                <input type="genero" class="form-control"
+                id="entradaGenero" placeholder="Ingrese el genero" v-model="nuevoGenero"/>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
               <input type="reset" value="Limpiar Campos" class="btn btn-primary black-background white" >
@@ -117,7 +201,9 @@ export default {
   methods:{
     addMedico(){
       //alert('adding name');
-      this.$store.commit('ADD_DOCTOR',{nombre: this.nuevoName,apellido: this.nuevoApellido,email: this.nuevoEmail});
+      this.$store.commit('ADD_DOCTOR',{nombre: this.nuevoName,apellido: this.nuevoApellido,email: this.nuevoEmail,direccion: this.nuevaDireccion ,telefono: this.nuevoTelefono,ocupacion: this.nuevaOcupacion, fechadenacimiento: this.nuevaFechaNaci, edad: this.nuevaEdad, genero: this.nuevoGenero});
+      
+
       $('#modal1').modal('hide');
 
     },
