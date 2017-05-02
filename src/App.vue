@@ -29,7 +29,7 @@
           <router-link to="/ListadoPacientes" active-class="active" tag="li" exact><a href="#">Listado Pacientes</a></router-link>
 
            <router-link to="/Citas" active-class="active" tag="li" exact><a href="#">Citas</a></router-link>
-        
+
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>

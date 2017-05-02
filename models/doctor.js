@@ -1,5 +1,5 @@
 var sqlite3 = require('sqlite3').verbose(),
-db = new sqlite3.Database('tienda'),
+db = new sqlite3.Database('data/database'),
 DOCTOR = {};
 
 db.serialize(function() {
@@ -8,7 +8,7 @@ db.serialize(function() {
 });
 
 DOCTOR.insertDoctor = function(doctor){
-  var stmt = db.prepare("INSERT INTO doctor VALUES (?,?,?,?,?,?,?,?)");
+  var stmt = db.prepare("INSERT INTO doctor VALUES (?,?,?,?,?,?,?,?,?)");
   stmt.run(null,doctor.nombre,doctor.apellido,doctor.direccion,doctor.telefono,doctor.ocupacion, doctor.nacimiento, doctor.edad, doctor.genero);
   stmt.finalize();
 }

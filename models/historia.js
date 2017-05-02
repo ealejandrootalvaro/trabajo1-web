@@ -1,5 +1,5 @@
-var sqlite3 = require('sqlite3').verbose(),
-db = new sqlite3.Database('tienda'),
+var sqlite3 = require('sqlite3').verbose();
+db = new sqlite3.Database('data/database');
 HISTORIA = {};
 
 db.serialize(function() {
@@ -24,7 +24,7 @@ HISTORIA.getHistoriasPaciente = function(callback,paciente){
 }
 
 HISTORIA.getHistoria = function(callback,id){
-  db.all("SELECT * FROM HISTORIA WHERE id = ?",[id], function(err,rows){
+  db.get("SELECT * FROM HISTORIA WHERE id = ?",[id], function(err,rows){
     if(err){
       throw err;
     }else{
