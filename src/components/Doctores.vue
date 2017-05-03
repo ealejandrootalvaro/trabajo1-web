@@ -21,7 +21,7 @@
       </thead>
       <tbody class="text-left" >
         <tr v-for="medico in doctores">
-          <td >{{medico.nombre}}</td>
+          <td >{{medico.id + " " +medico.nombre}}</td>
           <td >{{medico.apellido}}</td>
           <td >{{medico.email}}</td>
           <td >{{medico.direccion}}</td>
@@ -238,8 +238,10 @@ export default {
       if(index == -1){
         this.listaDoctores.push(id)
       }else{
-        this.splice(index,1)
+        this.listaDoctores.splice(index,1)
       }
+
+      console.log(this.listaDoctores)
     }
 
 

@@ -61,8 +61,10 @@ restapi.post('/api/doctor', function(req,res){
   console.log(req.body.email)
   //DOCTOR.insertDoctor({nombre: req.body.nombre, email: req.body.email})
   res.status(202);
-  DOCTOR.insertDoctor(req.body)
-  res.end()
+  DOCTOR.insertDoctor(function(data){
+    res.json(data)
+    res.end()
+  },req.body)
 });
 
 

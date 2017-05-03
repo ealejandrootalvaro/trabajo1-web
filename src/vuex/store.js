@@ -43,7 +43,7 @@ const mutations = {
     state.doctores.push(doctor);
   },
 
-  DELETE_DOCTOR (state,doctor){
+  DELETE_DOCTOR (state,id){
     console.log("antes")
     console.log(state.doctores)
     var index =-1;
@@ -116,6 +116,8 @@ const actions = {
 
   ADD_DOCTOR: function({commit},doctor){
     axios.post('http://localhost:3888/api/doctor',doctor).then((response)=>{
+      console.log(response.data)
+      doctor.id = response.data.id
       commit('ADD_DOCTOR',doctor)
     }, (err)=>{
       console.log(err)
@@ -131,11 +133,12 @@ const actions = {
     })
   },
 
-  DELETE_DOCTOR: function({commit},id){
+  DELETE_DOCTOR: function({commit},hola){
+    var newId = hola;
     console.log("antes axios")
-    axios.delete('http://localhost:3888/api/doctor/'+id).then((response)=>{
+    axios.delete('http://localhost:3888/api/doctor/'+newId).then((response)=>{
       console.log("voy a llamar el commit")
-      commit('DELETE_DOCTOR',id)
+      commit('DELETE_DOCTOR',newId)
     }, (err)=>{
       console.log(err)
     })

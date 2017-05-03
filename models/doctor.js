@@ -7,9 +7,15 @@ db.serialize(function() {
 
 });
 
-DOCTOR.insertDoctor = function(doctor){
+DOCTOR.insertDoctor = function(callback,doctor){
   var stmt = db.prepare("INSERT INTO doctor VALUES (?,?,?,?,?,?,?,?,?)");
-  stmt.run(null,doctor.nombre,doctor.apellido,doctor.direccion,doctor.telefono,doctor.ocupacion, doctor.nacimiento, doctor.edad, doctor.genero);
+  stmt.run(null,doctor.nombre,doctor.apellido,doctor.direccion,doctor.telefono,doctor.ocupacion, doctor.nacimiento, doctor.edad, doctor.genero, function(err){
+    if(err){
+      throw err;
+    }else{
+      callback({id: this.lastID})
+    }
+  });
   stmt.finalize();
 }
 
