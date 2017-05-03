@@ -13,7 +13,7 @@
           <a class="navbar-brand" href="#">Smile Fresh</a>
         </div>
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
+          <li class=""><a href="#">Home</a></li>
           <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Doctores<span class="caret"></span></a>
             <ul class="dropdown-menu">
 

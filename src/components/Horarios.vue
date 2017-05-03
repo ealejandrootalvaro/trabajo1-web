@@ -20,13 +20,13 @@
         </thead>
         <tbody class="text-left" >
           <tr v-for="medico in horarios">
-            <td >{{medico.nombre}}</td>
+            <td >{{medico.idHorario + " " +medico.nombre}}</td>
             <td >{{medico.apellido}}</td>
             <td >{{medico.email}}</td>
             <td >{{medico.dia}}</td>
             <td >{{medico.inicio}}</td>
             <td >{{medico.fin}}</td>
-            <td ><input type="checkbox" name="eliminar" value="eliminar"></td>
+            <td ><input v-on:click="clickMedico(medico.idHorario)" type="checkbox" name="eliminar" value="eliminar"></td>
           </tr>
 
         </tbody>
@@ -58,7 +58,7 @@
               <form role="form" id="myForm">
                 <div class="form-group">
                   <select class="form-control" name="" v-model="doctor">
-                    <option v-bind:value="item.id" v-for="item in doctores">{{item.nombre + item.apellido}}</option>
+                    <option v-bind:value="item.id" v-for="item in doctores">{{item.nombre + " " + item.apellido}}</option>
                   </select>
                 </div>
 
@@ -142,7 +142,7 @@ export default {
   data () {
     return {
       doctor: 0,
-      listanames:[],
+      listaDoctores:[],
       nuevoName:'',
       nuevoApellido:'',
       nuevoEmail:'',
@@ -178,13 +178,31 @@ export default {
     },
 
     eliminar() {
-      var aObj=document.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-      var i=aObj.length;
-      while(i--)   {
-        if(aObj[i].getElementsByTagName('input')[0].checked) {
-          aObj[i].parentNode.removeChild(aObj[i]);
+      for (var i = 0; i < this.listaDoctores.length; i++) {
+
+        this.$store.dispatch('DELETE_HORARIO',this.listaDoctores[i])
+
+      }
+    },
+
+    clickMedico(id){
+
+      var index = -1;
+
+      for (var i = 0; i < this.listaDoctores.length; i++) {
+        if(this.listaDoctores[i] == id){
+          index = i;
+          break;
         }
       }
+
+      if(index == -1){
+        this.listaDoctores.push(id)
+      }else{
+        this.listaDoctores.splice(index,1)
+      }
+
+      console.log(this.listaDoctores)
     }
 
 
