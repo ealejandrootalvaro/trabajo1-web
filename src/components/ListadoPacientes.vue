@@ -17,16 +17,15 @@
         </thead> 
          <tbody class="text-left" >
         <tr v-for="paciente in pacientes">
-          <td >{{paciente.nombre}}</td>
+          <td >{{paciente.id+ " " +paciente.nombre}}</td>
           <td >{{paciente.apellido}}</td>
-          <td >{{paciente.email}}</td>
           <td >{{paciente.direccion}}</td>
           <td >{{paciente.telefono}}</td>
           <td >{{paciente.ocupacion}}</td>
           <td >{{paciente.nacimiento}}</td>
           <td >{{paciente.edad}}</td>
           <td >{{paciente.genero}}</td>
-          <td ><input type="checkbox" name="eliminar" value="eliminar"></td>
+          <td ><input  v-on:click="clickPaciente(paciente.id)" type="checkbox" name="eliminar" value="eliminar"></td>
         </tr>
       </tbody>
     </table>
@@ -138,8 +137,7 @@ export default {
        ocupacion:'',
        fechaNacimiento:'',
        edad:'',
-       genero:'',
-       historia:'',
+       genero:''
        
 
     }
@@ -152,15 +150,32 @@ export default {
   },
 
  methods:{
-    eliminar() {
-        var aObj=document.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-        var i=aObj.length; 
-      while(i--)   { 
-          if(aObj[i].getElementsByTagName('input')[0].checked) {
-               aObj[i].parentNode.removeChild(aObj[i]);
-                                                               }
-                   }          
-               }
+
+        //listarPacientes(){
+
+ //   },
+        
+
+       /* clickPaciente(id){
+
+      var index = -1;
+
+      for (var i = 0; i < this.names.length; i++) {
+        if(this.names[i] == id){
+          index = i;
+          break;
+        }
+      }
+
+      if(index == -1){
+        this.names.push(id)
+      }else{
+        this.names.splice(index,1)
+      }
+
+      console.log(this.names)
+    }*/
+
   }
 
 

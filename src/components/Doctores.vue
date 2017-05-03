@@ -21,7 +21,7 @@
       </thead>
       <tbody class="text-left" >
         <tr v-for="medico in doctores">
-          <td >{{medico.id + " " +medico.nombre}}</td>
+          <td >{{medico.nombre}}</td>
           <td >{{medico.apellido}}</td>
           <td >{{medico.email}}</td>
           <td >{{medico.direccion}}</td>

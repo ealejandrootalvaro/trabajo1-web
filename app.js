@@ -181,8 +181,17 @@ restapi.get('/api/horario/:id',function(req,res){
 })
 
 restapi.post('/api/horario',function(req,res){
-  HORARIO.insertHorario(req.body)
-  res.end()
+  HORARIO.insertHorario(function(data){
+
+    DOCTOR.getDoctor(function(err,row){
+      data.nombre = row.nombre
+      data.apellido = row.apellido
+      res.json(data)
+      res.end()
+    },req.body.doctor)
+
+  },req.body)
+
 })
 
 restapi.delete('/api/horario/:id',function(req,res){

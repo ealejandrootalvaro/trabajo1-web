@@ -97,15 +97,15 @@ const mutations = {
   },
 
   DELETE_HORARIO(state,id){
-    var index =0;
+    var index =-1;
     for (var i = 0; i < state.horarios.length; i++) {
-      if(state.horarios[i].id == id){
+      if(state.horarios[i].idHorario == id){
         index = i;
         break;
       }
     }
 
-    if(index != 0){
+    if(index != -1){
       state.horarios.splice(index,1)
     }
   }
@@ -180,6 +180,9 @@ const actions = {
 
   ADD_HORARIO: function({commit},horario){
     axios.post('http://localhost:3888/api/horario',horario).then((response)=>{
+      horario.idHorario = response.data.id
+      horario.nombre = response.data.nombre
+      horario.apellido = response.data.apellido
       commit('ADD_HORARIO',horario)
     }, (err) => {
       console.log(err)
@@ -187,7 +190,9 @@ const actions = {
   },
 
   DELETE_HORARIO: function({commit},id){
+    console.log("Antes axios")
     axios.delete('http://localhost:3888/api/horario/'+id).then((response)=>{
+      console.log("response axios")
       commit('DELETE_HORARIO',id)
     }, (err) => {
       console.log(err)

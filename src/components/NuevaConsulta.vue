@@ -12,17 +12,15 @@
           <tr>
             <th>Nombre</th>
             <th>Apellido</th>
-            <th>Direccion</th>
-            <th>Telefono</th>
-            <th>Historia</th>
+            <th></th>
+          
           </tr>
         </thead> 
          <tbody class="text-left" >
         <tr v-for="paciente in pacientes">
           <td >{{paciente.nombre}}</td>
           <td >{{paciente.apellido}}</td>
-          <td >{{paciente.direccion}}</td>
-          <td >{{paciente.telefono}}</td>
+         
           <td ><input type="checkbox" name="seleccionar" value="Selecionar"></td>
         </tr>
       </tbody>

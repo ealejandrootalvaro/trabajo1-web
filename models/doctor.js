@@ -19,6 +19,16 @@ DOCTOR.insertDoctor = function(callback,doctor){
   stmt.finalize();
 }
 
+DOCTOR.getDoctor = function(callback,id){
+  db.get("SELECT * FROM doctor WHERE id = ?",[id],function(err,row){
+    if(err){
+      throw err
+    }else{
+      callback(null,row)
+    }
+  })
+}
+
 DOCTOR.getDoctores = function(callback){
   db.all("SELECT * FROM doctor", function(err,rows){
     if(err){
