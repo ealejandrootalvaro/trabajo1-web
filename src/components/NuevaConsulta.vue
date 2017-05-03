@@ -1,18 +1,37 @@
 <template>
   <div class="container">
     <h2 class="text" >Ingrese la siguiente informacion referente al registro de una consulta actual.</h2>
-    <p>[Falta: Ingresar paciente actual]</p>
+    <p>[Falta:Seleccionar el paciente de la consulta ]</p>
     <p>[Falta:Acceder a Historia clinica de ese paciente]</p>
     
     
                   <form role="form" id="formz" style="text-align: left;">
                   
-
+                       <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+            <th>Historia</th>
+          </tr>
+        </thead> 
+         <tbody class="text-left" >
+        <tr v-for="paciente in pacientes">
+          <td >{{paciente.nombre}}</td>
+          <td >{{paciente.apellido}}</td>
+          <td >{{paciente.direccion}}</td>
+          <td >{{paciente.telefono}}</td>
+          <td ><input type="checkbox" name="seleccionar" value="Selecionar"></td>
+        </tr>
+      </tbody>
+    </table>
 
                            <div class="form-group">
                           <label for="entradaPago">Seleccione la fecha.</label>  
                          <input  type="date" class="form-control"
-                           id="entradanombreMed" placeholder="Ingrese su nombre." v-model="nuevaFecha"style="width: 200px; "/>              
+                           id="fechaConsulta" placeholder="Ingrese su nombre." v-model="nuevaFecha"style="width: 200px; "/>              
                           </div>
 
 
@@ -28,7 +47,7 @@
                            <div class="form-group">
                                <label for="entradaHallazgos">Describa los hallazgos en esta consulta :</label> 
                                <br>                  
-                               <textarea id="entradaHallazgos" placeholder="//Ingrese aqui los hallazgos" rows="10" cols="60" v-model="hallazgos"></textarea>
+                               <textarea id="entradaHallazgos" placeholder="Hallazgos" rows="10" cols="90" v-model="hallazgos"></textarea>
                            
                            </div>
 

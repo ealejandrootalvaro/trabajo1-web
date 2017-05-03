@@ -7,7 +7,12 @@ import AgendarCita from '@/components/AgendarCita'
 import Doctores from '@/components/Doctores'
 import ListadoPacientes from '@/components/ListadoPacientes'
 import Citas from '@/components/Citas'
+import CitasPorMes from '@/components/CitasPorMes'
+import Recaudado from '@/components/Recaudado'
 
+
+
+import HistoriaClinica from '@/components/HistoriaClinica'
 Vue.use(Router)
 
 export default new Router({
@@ -37,7 +42,8 @@ export default new Router({
 
 
 
-    },{
+    }
+    ,{
         path:'/doctores',
       component: Doctores
 
@@ -60,11 +66,28 @@ export default new Router({
 
 
 
+    },
+
+    {
+        path:'/HistoriaClinica',
+      component: HistoriaClinica
+
+
+
+
     }
+  ,{
+        path:'/recaudado',
+      component: Recaudado
 
 
+      }
+ ,{
+        path:'/citasPorMes',
+      component: CitasPorMes
 
 
+      }
 
   ]
 })

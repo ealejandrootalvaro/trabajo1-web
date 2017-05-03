@@ -28,8 +28,19 @@
 
           <router-link to="/ListadoPacientes" active-class="active" tag="li" exact><a href="#">Listado Pacientes</a></router-link>
 
+           <router-link to="/HistoriaClinica" active-class="active" tag="li" exact><a href="#">Historia clinica </a></router-link>
+
+
            <router-link to="/Citas" active-class="active" tag="li" exact><a href="#">Citas</a></router-link>
 
+           <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Listados por mes<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+
+              <router-link to="/recaudado" active-class="active" tag="li" exact><a href="#">Recaudado</a></router-link>
+              <router-link to="/citasPorMes" active-class="active" tag="li" exact><a href="#">Citas</a></router-link>
+
+            </ul>
+            </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
