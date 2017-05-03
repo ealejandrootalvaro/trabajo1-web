@@ -2,7 +2,7 @@ var sqlite3 = require('sqlite3').verbose();
 db = new sqlite3.Database('data/database');
 HORARIO = {};
 db.serialize(function() {
-    db.run("CREATE TABLE IF NOT EXISTS HORARIO (id INTEGER PRIMARY KEY AUTOINCREMENT, doctor INTEGER, dia TEXT, inicio TIME, fin TIME)");
+    db.run("CREATE TABLE IF NOT EXISTS HORARIO (id INTEGER PRIMARY KEY AUTOINCREMENT, doctor INTEGER, dia TEXT, schedule INTEGER)");
 
 });
 

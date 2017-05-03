@@ -14,7 +14,8 @@ const state = {
     {cedula_paciente:"123",start:"2017-04-27",nom_med:"",title: "Cita paciente 123"}
   ],
   historias: [],
-  horarios: []
+  horarios: [],
+  schedules: []
 }
 
 const getters = {
@@ -108,6 +109,11 @@ const mutations = {
     if(index != -1){
       state.horarios.splice(index,1)
     }
+  },
+
+  /* OPERACIONES SCHEDULE */
+  SET_SCHEDULE(state,rows){
+    state.schedules = rows
   }
 
 }
@@ -194,6 +200,14 @@ const actions = {
     axios.delete('http://localhost:3888/api/horario/'+id).then((response)=>{
       console.log("response axios")
       commit('DELETE_HORARIO',id)
+    }, (err) => {
+      console.log(err)
+    })
+  },
+
+  LOAD_SCHEDULE: function({commit}){
+    axios.get('http://localhost:3888/api/schedule').then((response)=>{
+      commit('SET_SCHEDULE',response.data)
     }, (err) => {
       console.log(err)
     })

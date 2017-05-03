@@ -20,7 +20,7 @@
         </thead>
         <tbody class="text-left" >
           <tr v-for="medico in horarios">
-            <td >{{medico.idHorario + " " +medico.nombre}}</td>
+            <td >{{medico.nombre}}</td>
             <td >{{medico.apellido}}</td>
             <td >{{medico.email}}</td>
             <td >{{medico.dia}}</td>
@@ -81,6 +81,9 @@
                 <div class="form-group">
                   <label for="horaEntrada">Hora de Entrada</label>
                   <input id="horaEntrada" placeholder="Ingrese la hora de entrada." type="time" class="form-control" name="" value="" v-model="nuevaHoraE">
+                  <select class="" name="">
+                    <option value="" v-for="item in schedules"></option>
+                  </select>
                 </div>
 
 
@@ -161,6 +164,10 @@ export default {
 
     doctores(){
       return this.$store.state.doctores
+    },
+
+    schedules(){
+      return this.$store.state.schedules
     }
   },
 

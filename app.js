@@ -6,12 +6,11 @@ var HISTORIA = require('./models/historia')
 var PACIENTE = require('./models/paciente')
 var CITA = require('./models/cita')
 var HORARIO = require('./models/horario')
+var SCHEDULE = require('./models/schedule')
 
 var express = require('express');
 var restapi = express();
 var cors = require('cors');
-
-
 
 var bodyParser = require('body-parser')
 
@@ -197,6 +196,14 @@ restapi.post('/api/horario',function(req,res){
 restapi.delete('/api/horario/:id',function(req,res){
   HORARIO.deleteHorario(req.params.id)
   res.end()
+})
+
+/* ***** API SCHEDULE ****** */
+restapi.get('/api/schedule',function(req,res){
+  SCHEDULE.getAll(function(err,data){
+    res.json(data);
+    res.end()
+  })
 })
 
 
