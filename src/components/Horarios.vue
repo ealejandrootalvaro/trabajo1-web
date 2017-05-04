@@ -177,8 +177,8 @@ export default {
     addMedico(){
       //alert('adding name');
       console.log(this.horario)
-      this.$store.dispatch('ADD_HORARIO',{doctor: this.doctor, dia: this.dia,inicio: this.horario.inicio,fin: this.horario.fin});
-      //$('#modal1').modal('hide');
+      this.$store.dispatch('ADD_HORARIO',{doctor: this.doctor, schedule: this.horario.id});
+      $('#modal1').modal('hide');
 
     },
 

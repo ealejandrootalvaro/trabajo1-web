@@ -3,12 +3,12 @@ db = new sqlite3.Database('data/database');
 HORARIO = {};
 db.serialize(function() {
     db.run("CREATE TABLE IF NOT EXISTS HORARIO (id INTEGER PRIMARY KEY AUTOINCREMENT, doctor INTEGER, dia TEXT, schedule INTEGER)");
-    
+
 });
 
 HORARIO.insertHorario = function(callback,horario){
-  var stmt = db.prepare("INSERT INTO HORARIO VALUES (?,?,?,?,?)");
-  stmt.run(null,horario.doctor,horario.dia,horario.inicio,horario.fin, function(err){
+  var stmt = db.prepare("INSERT INTO HORARIO VALUES (?,?,?,?)");
+  stmt.run(null,horario.doctor,horario.dia,horario.schedule, function(err){
     if(err){
       throw err
     }else{
@@ -19,7 +19,7 @@ HORARIO.insertHorario = function(callback,horario){
 }
 
 HORARIO.getHorariosDoctor = function(callback,doctor){
-  db.all("SELECT horario.id as idHorario, * FROM HORARIO INNER JOIN doctor ON horario.doctor = doctor.id WHERE doctor = ?",[doctor],function(err,rows){
+  db.all("SELECT horario.id as idHorario, * FROM HORARIO INNER JOIN doctor ON horario.doctor = doctor.id INNER JOIN schedule ON horario.schedule = shedule.id WHERE doctor = ?",[doctor],function(err,rows){
     if(err){
       throw err;
     }else{
