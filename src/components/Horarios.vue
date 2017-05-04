@@ -79,10 +79,9 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="horaEntrada">Hora de Entrada</label>
-                  <input id="horaEntrada" placeholder="Ingrese la hora de entrada." type="time" class="form-control" name="" value="" v-model="nuevaHoraE">
-                  <select class="" name="">
-                    <option value="" v-for="item in schedules"></option>
+
+                  <select class="" name="" v-model="horario">
+                    <option v-bind:value="item" v-for="item in schedules">{{item.inicio + "-"+item.fin}}</option>
                   </select>
                 </div>
 
@@ -149,9 +148,10 @@ export default {
       nuevoName:'',
       nuevoApellido:'',
       nuevoEmail:'',
-      nuevaHoraE:'',
-      nuevaHoraS:'',
-      dia:''
+      horario: {},
+      dia:'',
+      nuevaHoraS: '',
+      nuevaHoraE: ''
 
     }
   },
@@ -179,8 +179,9 @@ export default {
   methods:{
     addMedico(){
       //alert('adding name');
-      this.$store.dispatch('ADD_HORARIO',{doctor: this.doctor, dia: this.dia,inicio: this.nuevaHoraE,fin: this.nuevaHoraS});
-      $('#modal1').modal('hide');
+      console.log(this.horario)
+      //this.$store.dispatch('ADD_HORARIO',{doctor: this.doctor, dia: this.dia,inicio: this.nuevaHoraE,fin: this.nuevaHoraS});
+      //$('#modal1').modal('hide');
 
     },
 

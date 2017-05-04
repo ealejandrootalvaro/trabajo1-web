@@ -4,7 +4,7 @@ SCHEDULE = {};
 
 db.serialize(function() {
     db.run("CREATE TABLE IF NOT EXISTS SCHEDULE (id INTEGER PRIMARY KEY AUTOINCREMENT, inicio TIME, fin TIME)");
-    db.run("INSERT INTO schedule VALUES (null,8:00,8:30), (null,8:30,9:00), (null,9:00,9:30), (null,9:30,10:00)");
+    db.run("INSERT INTO schedule (inicio,fin) VALUES ('8:00','8:30'), ('8:30','9:00'), ('9:00','9:30'), ('9:30','10:00')");
 });
 
 SCHEDULE.getAll = function(callback){

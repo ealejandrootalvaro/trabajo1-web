@@ -63,6 +63,7 @@ export default {
 
     this.$store.dispatch('LOAD_DOCTORES');
     this.$store.dispatch('LOAD_HORARIOS');
+    this.$store.dispatch('LOAD_SCHEDULE');
 
   }
 }
