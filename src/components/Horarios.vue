@@ -79,18 +79,15 @@
                 </div>
 
                 <div class="form-group">
-
-                  <select class="" name="" v-model="horario">
+                  <label for="">Seleccione el horario</label>
+                  <select class="form-control" name="" v-model="horario">
                     <option v-bind:value="item" v-for="item in schedules">{{item.inicio + "-"+item.fin}}</option>
                   </select>
                 </div>
 
 
 
-                <div class="form-group">
-                  <label for="horaSalida">Hora de Salida</label>
-                  <input id="horaSalida" placeholder="Ingrese la hora de salida." type="time" class="form-control" name="" value="" v-model="nuevaHoraS">
-                </div>
+
 
                 <input type="reset" value="Limpiar Campos" class="btn btn-primary black-background white" >
 
@@ -180,7 +177,7 @@ export default {
     addMedico(){
       //alert('adding name');
       console.log(this.horario)
-      //this.$store.dispatch('ADD_HORARIO',{doctor: this.doctor, dia: this.dia,inicio: this.nuevaHoraE,fin: this.nuevaHoraS});
+      this.$store.dispatch('ADD_HORARIO',{doctor: this.doctor, dia: this.dia,inicio: this.horario.inicio,fin: this.horario.fin});
       //$('#modal1').modal('hide');
 
     },
