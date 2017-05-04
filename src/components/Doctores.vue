@@ -12,7 +12,7 @@
           <th>Direccion</th>
           <th>Telefono</th>
           <th>Ocupacion</th>
-          <th>Fecha De Nacimiento</th>
+          <th>Nacimiento</th>
           <th>Edad</th>
           <th>Genero</th>
           <th>Eliminar</th>
@@ -60,11 +60,11 @@
             <h5 class="text-left" >Ingrese la siguiente informacion referente al registro de un nuevo doctor.</h5>
 
 
-            <form role="form" id="myForm">
+            <form role="form" id="myForm" >
               <div class="form-group">
                 <label for="entradaNombres">Nombres</label>
                 <input type="nombres" class="form-control"
-                id="entradaNombres" placeholder="Ingrese los Nombres" v-model="nuevoName"/>
+                id="entradaNombres" placeholder="Ingrese los Nombres" v-model="nuevoName" />
               </div>
               <div class="form-group">
                 <label for="entradaApellidos">Apellidos</label>
@@ -101,7 +101,7 @@
               <div class="form-group">
                 <label for="entradaFechNacimi">Fecha de Nacimiento</label>
                 <input type="fechadenacimiento" class="form-control"
-                id="entradaFechNacimi" placeholder="Ingrese la fecha de nacimiento" v-model="nuevaFechaNaci"/>
+                id="entradaFechNacimi" placeholder="(dd/mm/aaaa)" v-model="nuevaFechaNaci"/>
               </div>
 
               <div class="form-group">
@@ -113,61 +113,26 @@
               <div class="form-group">
                 <label for="entradaGenero">Genero</label>
                 <input type="genero" class="form-control"
-                id="entradaGenero" placeholder="Ingrese el genero" v-model="nuevoGenero"/>
+                id="entradaGenero" placeholder="M ó F" v-model="nuevoGenero"/>
               </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
               <input type="reset" value="Limpiar Campos" class="btn btn-primary black-background white" >
 
+                <div class="modal-footer">
 
+                   <button type="button" class="btn btn-primary black-background white"
+                    data-dismiss="modal">
+                    Cerrar
+                    </button>
+
+                     <button @click="addMedico" class="btn btn-primary black-background white">Aceptar</button>
+                      </div>
             </form>
 
           </div>
-          <div class="modal-footer">
-
-            <button type="button" class="btn btn-primary black-background white"
-            data-dismiss="modal">
-            Cerrar
-          </button>
-          <button @click="addMedico" class="btn btn-primary black-background white">
-
-            Aceptar
-          </button>
-
-
-        </div>
+          
       </div>
     </div>
   </div>
@@ -206,11 +171,84 @@ export default {
   methods:{
     addMedico(){
       //alert('adding name');
-      this.$store.dispatch('ADD_DOCTOR',{nombre: this.nuevoName,apellido: this.nuevoApellido,email: this.nuevoEmail,direccion: this.nuevaDireccion ,telefono: this.nuevoTelefono,ocupacion: this.nuevaOcupacion, nacimiento: this.nuevaFechaNaci, edad: this.nuevaEdad, genero: this.nuevoGenero});
+      
+
+     var numeros = /^[0-9]+$/;  
+     var letras = /^[A-Za-z]+$/; 
+      if(this.nuevoName  == "" || this.nuevoApellido == "" || this.nuevoEmail == "" || this.nuevaDireccion == "" || this.nuevoTelefono == "" || this.nuevaOcupacion == "" || this.nuevaFechaNaci == "" || this.nuevaEdad == "" || this.nuevoGenero == ""  ){
+
+          alert('Asegurese de llenar todos los campos del formulario.');
+          $('#modal1').modal('show');
+      }else{
 
 
-      $('#modal1').modal('hide');
 
+          if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.nuevoEmail))
+
+          {
+                 
+
+
+                    if(this.nuevoTelefono.match(numeros) && this.nuevaEdad.match(numeros) ){
+
+                        if(this.nuevoName.match(letras) && this.nuevoApellido.match(letras) && this.nuevaOcupacion.match(letras) && this.nuevoGenero.match(letras) ){
+
+                            this.$store.dispatch('ADD_DOCTOR',{nombre: this.nuevoName,apellido: this.nuevoApellido,email: this.nuevoEmail,direccion: this.nuevaDireccion ,telefono: this.nuevoTelefono,ocupacion: this.nuevaOcupacion, nacimiento: this.nuevaFechaNaci, edad: this.nuevaEdad, genero: this.nuevoGenero});
+                         $('#modal1').modal('hide');
+                        
+
+
+
+
+                        }else{
+                           alert('Verifique los campos de nombre, apellido, ocupacion y genero. Deben ser unicamente letras.');
+                           $('#modal1').modal('show');
+
+                        }
+
+
+
+
+
+
+
+
+
+                        
+                    }else{
+
+                           alert('Verifique los campos de telefono y edad, deben ser numericos.');
+                           $('#modal1').modal('show');
+
+                    }
+
+
+
+
+
+
+
+                 
+
+
+          }else{
+
+
+            alert('El email ingresado no es valido');
+            $('#modal1').modal('show');
+          }
+
+         
+      }
+
+
+      
+
+    },
+
+    validarcampos(){
+      alert('validando');
+      return true;
     },
 
     eliminar() {
@@ -238,10 +276,8 @@ export default {
       if(index == -1){
         this.listaDoctores.push(id)
       }else{
-        this.listaDoctores.splice(index,1)
+        this.splice(index,1)
       }
-
-      console.log(this.listaDoctores)
     }
 
 
